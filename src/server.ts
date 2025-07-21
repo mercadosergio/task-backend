@@ -35,8 +35,6 @@ export default class Server {
 
   async bootstrap() {
     this.middlewares();
-    // this.loadApiRoutes();
-    // this.routes();
     this.loadPassportStrategies();
     routerApi(this.app);
     this.app.use(logErrors);
@@ -66,10 +64,9 @@ export default class Server {
         );
 
         if (fs.existsSync(routeFile)) {
-          // try {
           import(routeFile)
             .then((routerModule) => {
-              this.app.use(`/api/v1/${moduleName}`, routerModule.default); // Monta el enrutador con un prefijo
+              this.app.use(`/api/v1/${moduleName}`, routerModule.default);
               console.log(`Loaded routes for module: ${moduleName}`);
             })
             .catch((err) => {
@@ -78,9 +75,6 @@ export default class Server {
                 err
               );
             });
-          // } catch (error: any) {
-          //   console.error(`Not exist file route for ${moduleName}`);
-          // }
         }
       });
   }
