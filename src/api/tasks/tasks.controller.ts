@@ -50,7 +50,7 @@ export class TasksController {
 
             const result = await this.tasksService.delete(+id);
 
-            res.status(200).json(result);
+            res.status(200).json({ message: `Task ${result.text} deleted` });
         } catch (error) {
             next(error);
         }
@@ -66,7 +66,7 @@ export class TasksController {
                 body
             );
 
-            res.status(200).json(changes);
+            res.status(200).json({ message: `Task ${changes.text} updated`, changes });
         } catch (error) {
             next(error);
         }

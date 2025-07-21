@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --env-file .env src/app.ts",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "migrate": "prisma migrate dev --name",
+    "migrate:revert": "prisma migrate reset",
+    "seed": "ts-node-dev prisma/seeds.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
